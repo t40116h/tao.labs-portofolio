@@ -8,10 +8,10 @@ export function SmoothScroll() {
         const lenis = new Lenis({
             duration: 1.1,
             easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            smoothTouch: false,
-            syncTouch: true,
-        });
+            wheelMultiplier: 1,
+            touchMultiplier: 1,
+            // remove non-existent properties for LenisOptions in TS
+        } as any);
 
         let rafId: number;
         const raf = (time: number) => {
