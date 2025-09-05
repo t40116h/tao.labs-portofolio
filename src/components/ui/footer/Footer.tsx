@@ -6,7 +6,7 @@ export function Footer() {
         <footer style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
             <div
                 className="page-container"
-                style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: "0.75rem" }}
+                style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: "0.75rem" }}
             >
                 <div>
                     <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, letterSpacing: "0.06em", opacity: 0.85 }}>
@@ -14,7 +14,7 @@ export function Footer() {
                         <span><ThemeToggle /></span>
                     </span>
                 </div>
-                <div style={{ textAlign: "center", fontSize: "12px", lineHeight: 1.2, opacity: 0.9, whiteSpace: "nowrap" }}>
+                <div style={{ textAlign: "center", fontSize: "12px", lineHeight: 1.2, opacity: 0.9, whiteSpace: "nowrap", justifySelf: "center", paddingInline: "0.5rem" }}>
                     <span>©2025 Tao.Labs. All Rights Reserved.</span>
                 </div>
                 <div style={{ justifySelf: "end" }}>

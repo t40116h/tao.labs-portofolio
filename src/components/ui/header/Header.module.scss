@@ -95,6 +95,7 @@
     text-transform: uppercase;
     /* On mobile sit at the far right in grid column 3 */
     justify-self: end;
+    margin-right: 4px; /* default nudge */
 }
 
 .cta {
@@ -124,6 +125,7 @@
 @media (min-width: 768px) {
     .nav {
         display: block;
+        transform: translateX(8px); /* slight right shift to align with rest */
     }
 
     .menuButton {
@@ -132,6 +134,13 @@
 
     .cta {
         display: inline-flex;
+    }
+}
+
+@media (max-width: 767px) {
+    .menuButton {
+        margin-right: 12px; /* stronger nudge on small screens */
+        transform: translateX(16px); /* align with viewport edge (offset page-container padding) */
     }
 }
 
