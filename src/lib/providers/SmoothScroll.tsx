@@ -5,6 +5,13 @@ import Lenis from "lenis";
 
 export function SmoothScroll() {
     useEffect(() => {
+        // Skip on touch/coarse pointers or when user prefers reduced motion
+        const prefersReduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const isCoarse = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+        if (prefersReduced || isCoarse) {
+            return;
+        }
+
         const options: Partial<{ duration: number; easing: (t: number) => number; wheelMultiplier: number; touchMultiplier: number; }> = {
             duration: 1.1,
             easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),

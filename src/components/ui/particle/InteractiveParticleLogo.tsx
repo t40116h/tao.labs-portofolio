@@ -60,6 +60,7 @@ export function InteractiveParticleLogo({
         const context: CanvasRenderingContext2D = ctx;
 
         const devicePixelRatioSafe = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        const coarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
 
         function computeAndResizeCanvas() {
             const parent = containerRef.current;
@@ -136,7 +137,9 @@ export function InteractiveParticleLogo({
             samplingContext.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
             const rgba = samplingContext.getImageData(0, 0, width, height).data;
 
-            const spacing = Math.max(1, Math.floor(density * devicePixelRatioSafe));
+            // Reduce particles on mobile/coarse pointers for performance
+            const densityScale = coarsePointer ? 1.5 : 1;
+            const spacing = Math.max(1, Math.floor(density * densityScale * devicePixelRatioSafe));
             const particles: Particle[] = [];
 
             for (let y = 0; y < height; y += spacing) {
@@ -197,7 +200,7 @@ export function InteractiveParticleLogo({
             // Save back
             particlesRef.current = particles;
 
-            if (prefersReducedMotion) {
+            if (prefersReducedMotion || coarsePointer) {
                 drawStatic();
                 return;
             }
@@ -368,8 +371,12 @@ export function InteractiveParticleLogo({
                 width = dims.width;
                 height = dims.height;
                 cssInnerWidth = dims.cssInnerWidth;
-                // Force re-sample by triggering image onload path again
-                image.onload?.(new Event("load"));
+                // Avoid heavy re-sample if offscreen
+                const rect = canvas.getBoundingClientRect();
+                const isVisible = rect.bottom > 0 && rect.right > 0 && rect.top < (window.innerHeight || 0) && rect.left < (window.innerWidth || 0);
+                if (isVisible) {
+                    image.onload?.(new Event("load"));
+                }
             });
         }
 
