@@ -7,8 +7,9 @@ type LogoBadgeProps = {
 };
 
 export const LogoBadge: React.FC<LogoBadgeProps> = ({ className, size = 32 }) => {
+    const style = { "--logo-size": `${size}px` } as React.CSSProperties & { [key: string]: string };
     return (
-        <div className={[styles.container, className].filter(Boolean).join(" ")} style={{ ["--logo-size" as any]: `${size}px` }}>
+        <div className={[styles.container, className].filter(Boolean).join(" ")} style={style}>
             <svg
                 className={styles.svg}
                 viewBox="0 0 100 100"

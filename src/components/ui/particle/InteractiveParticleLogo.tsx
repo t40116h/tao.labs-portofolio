@@ -178,23 +178,24 @@ export function InteractiveParticleLogo({
                     if (dist > maxDist) maxDist = dist;
                 }
                 // Attach dynamic field 'layer' using type assertion
-                for (const p of particles as (Particle & { layer?: number })[]) {
+                for (const p of particles as Particle[]) {
                     const dx = p.baseX - cx;
                     const dy = p.baseY - cy;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     const raw = Math.min(LAYER_COUNT - 1, Math.floor((dist / maxDist) * LAYER_COUNT));
                     // back = outer ring
-                    (p as any).layer = (LAYER_COUNT - 1) - raw;
+                    (p as unknown as { layer: number }).layer = (LAYER_COUNT - 1) - raw;
                     // stagger reassembly so back returns first
                     const perLayerDelay = 180;
-                    p.reassembleDelayMs += ((p as any).layer ?? 0) * perLayerDelay;
+                    const layer = (p as unknown as { layer: number }).layer ?? 0;
+                    p.reassembleDelayMs += layer * perLayerDelay;
                 }
                 // Draw order: back first, front last
-                (particles as (Particle & { layer?: number })[]).sort((a, b) => ((a as any).layer ?? 0) - ((b as any).layer ?? 0));
+                (particles as unknown as Array<Particle & { layer: number }>).sort((a, b) => (a.layer ?? 0) - (b.layer ?? 0));
             }
 
             // Save back
-            particlesRef.current = particles as any;
+            particlesRef.current = particles;
 
             if (prefersReducedMotion) {
                 drawStatic();
@@ -284,7 +285,7 @@ export function InteractiveParticleLogo({
                 if (p.isBroken) {
                     // While broken, let it scatter and drift
                     p.timeSinceBreakMs += dtMs;
-                    let damping = 0.92;
+                    const damping = 0.92;
                     // Reassemble after delay with an eased spring for flowing motion
                     if (p.timeSinceBreakMs >= p.reassembleDelayMs) {
                         const elapsed = p.timeSinceBreakMs - p.reassembleDelayMs;
@@ -372,7 +373,7 @@ export function InteractiveParticleLogo({
             });
         }
 
-        const ResizeObs = (window as any).ResizeObserver;
+        const ResizeObs = (window as unknown as { ResizeObserver?: typeof ResizeObserver }).ResizeObserver;
         const ro = ResizeObs ? new ResizeObs(() => reflow()) : undefined;
         if (ro && container) ro.observe(container);
         window.addEventListener("resize", reflow);

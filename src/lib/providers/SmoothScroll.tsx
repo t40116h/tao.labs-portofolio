@@ -5,13 +5,13 @@ import Lenis from "lenis";
 
 export function SmoothScroll() {
     useEffect(() => {
-        const lenis = new Lenis({
+        const options: Partial<{ duration: number; easing: (t: number) => number; wheelMultiplier: number; touchMultiplier: number; }> = {
             duration: 1.1,
             easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
             wheelMultiplier: 1,
             touchMultiplier: 1,
-            // remove non-existent properties for LenisOptions in TS
-        } as any);
+        };
+        const lenis = new Lenis(options as unknown as ConstructorParameters<typeof Lenis>[0]);
 
         let rafId: number;
         const raf = (time: number) => {

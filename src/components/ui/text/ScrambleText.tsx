@@ -20,7 +20,7 @@ export function ScrambleText({ children, as = "span", className }: ScrambleTextP
         setText(children);
     }, [children]);
 
-    const Comp: any = as;
+    const Comp = as as keyof React.JSX.IntrinsicElements;
     return (
         <Comp
             className={[styles.root, className].filter(Boolean).join(" ")}
