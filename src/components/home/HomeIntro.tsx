@@ -16,12 +16,7 @@ export function HomeIntro() {
                     <div style={{ marginTop: "12px" }}>
                         <LogoBadge size={120} />
                     </div>
-                    <div className={styles.socials}>
-                        <a href="https://x.com/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>X</ScrambleText></a>
-                        <a href="https://t.me/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>Telegram</ScrambleText></a>
-                        <a href="https://instagram.com/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>Instagram</ScrambleText></a>
-                        <a href="https://github.com/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>Github</ScrambleText></a>
-                    </div>
+                    {/* Social links moved to Footer for global placement */}
                 </div>
             </div>
         </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import ThemeToggle from "@/components/ui/theme/ThemeToggle";
+import { ScrambleText } from "@/components/ui/text";
 
 export function Footer() {
     return (
@@ -14,8 +15,16 @@ export function Footer() {
                         <span><ThemeToggle /></span>
                     </span>
                 </div>
-                <div style={{ textAlign: "center", fontSize: "12px", lineHeight: 1.2, opacity: 0.9, whiteSpace: "nowrap", justifySelf: "center", paddingInline: "0.5rem" }}>
-                    <span>©2025 Tao.Labs. All Rights Reserved.</span>
+                <div style={{ textAlign: "center", justifySelf: "center" }}>
+                    <div style={{ display: "inline-flex", gap: "1rem", marginBottom: "6px", fontFamily: "var(--font-mono)", letterSpacing: "0.06em", fontSize: 12 }}>
+                        <a href="https://x.com/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>X</ScrambleText></a>
+                        <a href="https://t.me/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>Telegram</ScrambleText></a>
+                        <a href="https://instagram.com/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>Instagram</ScrambleText></a>
+                        <a href="https://github.com/t40116h" target="_blank" rel="noopener noreferrer"><ScrambleText>Github</ScrambleText></a>
+                    </div>
+                    <div style={{ fontSize: 12, lineHeight: 1.2, opacity: 0.9, whiteSpace: "nowrap", paddingInline: "0.5rem" }}>
+                        <span>©2025 Tao.Labs. All Rights Reserved.</span>
+                    </div>
                 </div>
                 <div style={{ justifySelf: "end" }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 21 23" aria-hidden>
