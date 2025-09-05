@@ -1,0 +1,41 @@
+.root {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.placeholder {
+    visibility: hidden;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* avoid capturing hover */
+    white-space: pre;
+    /* preserve spacing */
+    will-change: opacity;
+}
+
+@keyframes blackout {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.root:hover .overlay {
+    animation: blackout 0.1s 4;
+}
+
+.root:hover {
+    opacity: 0.85;
+}

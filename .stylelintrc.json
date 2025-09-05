@@ -1,0 +1,29 @@
+{
+    "extends": ["stylelint-config-standard-scss", "stylelint-config-sass-guidelines"],
+    "plugins": ["stylelint-scss"],
+    "rules": {
+      "scss/at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
+        }
+      ],
+      "max-nesting-depth": 4,
+      "selector-class-pattern": null,
+      "selector-no-qualifying-type": [
+        true,
+        {
+          "ignore": ["attribute", "class"]
+        }
+      ],
+      "declaration-property-value-disallowed-list": null,
+      "color-function-alias-notation": null,
+      "alpha-value-notation": null,
+      "declaration-block-no-redundant-longhand-properties": null,
+      "color-function-notation": null,
+      "selector-max-id": 0,
+      "scss/load-partial-extension": "never",
+      "@stylistic/function-parentheses-space-inside": null
+    }
+  }
+  

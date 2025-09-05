@@ -1,0 +1,27 @@
+.root {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--foreground);
+    opacity: 0.7;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.dash {
+    height: 1px;
+    background: var(--border);
+}
+
+.count {
+    white-space: nowrap;
+}
+
+.title {
+    white-space: nowrap;
+}
+
+

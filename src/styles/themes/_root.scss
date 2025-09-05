@@ -1,0 +1,36 @@
+:root {
+    --background: #ffffff;
+    /* white */
+    --foreground: #000000;
+    /* black */
+    --link: #2a2a2a;
+    /* black links */
+    --border: #0000001a;
+    /* subtle black alpha */
+    --panel-bg: rgba(255, 255, 255, 0.06);
+    /* preferred premium font stacks with robust fallbacks */
+    --font-gt: "GT Walsheim", "GT Walsheim Pro", Manrope, "Plus Jakarta Sans", "Avenir Next", Avenir, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-circular: "Circular", "Circular Std", "LL Circular", "Plus Jakarta Sans", Manrope, system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-helvetica-now: "Helvetica Now Text", "Neue Helvetica", "Helvetica Neue", Helvetica, Arial, Inter, system-ui, -apple-system, sans-serif;
+    --font-montreal: "Neue Montreal", "Söhne", Inter, Manrope, "Plus Jakarta Sans", system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+[data-theme="dark"] {
+    --background: #000000;
+    /* black */
+    --foreground: #ffffff;
+    /* white */
+    --link: #d0d0d0;
+    /* links on dark */
+    --border: #ffffff1a;
+    /* subtle white alpha */
+    --panel-bg: rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] {
+    --background: #ffffff;
+    --foreground: #000000;
+    --link: #2a2a2a;
+    --border: #0000001a;
+    --panel-bg: rgba(255, 255, 255, 0.06);
+}

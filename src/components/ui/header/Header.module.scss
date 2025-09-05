@@ -1,0 +1,181 @@
+.root {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: transparent;
+    border-bottom: 0;
+    font-family: var(--font-mono);
+}
+
+.container {
+    /* Grid ensures the nav can be perfectly centered between logo and actions */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    height: 64px;
+    gap: 0.75rem;
+}
+
+.brand {
+    font-weight: 600;
+    justify-self: start;
+    line-height: 0;
+    /* snug clickable area around the logo */
+}
+
+.nav {
+    /* Hidden on mobile; center on desktop */
+    display: none;
+    justify-self: center;
+}
+
+.navList {
+    display: flex;
+    /* Even spacing between nav links */
+    gap: 1.25rem;
+    list-style: none;
+    text-transform: none;
+    /* site-wide lowercase allowed */
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+}
+
+.navList a {
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 180ms ease, color 180ms ease;
+    position: relative;
+    line-height: 1;
+    /* reduce descender gap */
+}
+
+.navList a:hover {
+    opacity: 0.85;
+}
+
+.navList a::before {
+    /* static line (shows after hover starts) */
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.05em;
+    /* tuck closer to glyphs */
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity 120ms ease;
+    z-index: 1;
+}
+
+.navList a::after {
+    content: "";
+    display: none; /* disable moving segment */
+}
+
+.navList a:hover::after {
+    /* no-op: keep line static */
+}
+
+.navList a:hover::before { opacity: 1; transition-delay: 0ms; }
+
+.menuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    min-height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 999px; /* badge/pill */
+    background: var(--panel-bg);
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    /* On mobile sit at the far right in grid column 3 */
+    justify-self: end;
+}
+
+.cta {
+    display: none;
+    color: var(--foreground);
+    text-decoration: none;
+    /* right edge on desktop */
+    justify-self: end;
+    text-transform: none;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    transition: opacity 180ms ease, color 180ms ease;
+}
+
+.mobilePanel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--background);
+    z-index: 70;
+    /* Center overlay content */
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .nav {
+        display: block;
+    }
+
+    .menuButton {
+        display: none;
+    }
+
+    .cta {
+        display: inline-flex;
+    }
+}
+
+.mobileOpen {
+    display: flex;
+    overflow: hidden;
+}
+
+.overlayContent {
+    width: 100%;
+    max-width: var(--container-max-width, 1480px);
+    padding: 2rem 1rem;
+}
+
+.overlayList {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+}
+
+.overlayList a {
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.overlayClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    min-height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--panel-bg);
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
